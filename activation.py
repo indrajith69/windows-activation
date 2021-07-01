@@ -1,5 +1,6 @@
 from tkinter import Tk,IntVar,Label,Button,Radiobutton
 from tkinter import messagebox
+from os import system
 
 
 class app:
@@ -14,16 +15,18 @@ class app:
 	def activate(self):
 		version = self.selection.get()
 		proceed = messagebox.askyesno("activation",f"are you sure the version of windows you have installed on your system is 'Windows 10 {self.versions[version]}'?")
-		print(self.activation_codes[version])
-		#slmgr /ipk yourlicensekey
-		#slmgr /skms kms10.msguides.com
-		#slmgr /ato
+		activation_key = self.activation_codes[version]
+		if proceed:
+			system(f"slmgr /ipk {activation_key}")
+			system("slmgr /skms kms10.msguides.com")
+			system("slmgr /ato")
+		self.root.destroy()
 
 	def window(self):
 		self.root = Tk()
 		self.root.config(bg=self.bg)
 		self.root.title("windows activation")
-		self.root.geometry("400x230")
+		self.root.geometry("390x270")
 		self.widgets()
 		self.root.mainloop()
 
