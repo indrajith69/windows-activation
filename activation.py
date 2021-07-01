@@ -1,32 +1,43 @@
 from tkinter import Tk,IntVar,Label,Button,Radiobutton
 from tkinter import messagebox
-from os import system
-
+from subprocess import run
+from threading import Thread
+import time
 
 class app:
 	def __init__(self):
 		self.bg = "#081828"
 		self.fg = "#FFFFFF"
+		self.can_exit = True
 		self.versions = ["Home","Home N","Professional","Professional N","Education","Education N","Enterprise","Enterprise N","Home Single Language","Home Country Specific"]
 		self.activation_codes = ["TX9XD-98N7V-6WMQ6-BX7FG-H8Q99","3KHY7-WNT83-DGQKR-F7HPR-844BM","W269N-WFGWX-YVC9B-4J6C9-T83GX","MH37W-N47XK-V7XM9-C7227-GCQG9","NW6C2-QMPVW-D7KKK-3GKT6-VCFB2","2WH4N-8QGBV-H22JP-CT43Q-MDWWJ","NPPR9-FWDCX-D2C8J-H872K-2YT43","DPH2V-TTNVB-4X9Q3-TJR4H-KHJW4","7HNRX-D7KGG-3K4RQ-4WPJ4-YTDFH","PVMJN-6DFY6-9CCP6-7BKTT-D3WVR"]
 
 		self.window()
+
+	def exit(self):
+		if self.can_exit:
+			self.root.destroy()
 
 	def activate(self):
 		version = self.selection.get()
 		proceed = messagebox.askyesno("activation",f"this is going to activate your system as 'Windows 10 {self.versions[version]}'\n\n do you wish to proceed?")
 		activation_key = self.activation_codes[version]
 		if proceed:
-			system(f"slmgr /ipk {activation_key}")
-			system("slmgr /skms kms10.msguides.com")
-			system("slmgr /ato")
-		self.root.destroy()
+			self.can_exit = False
+			def execute():
+				run(f"slmgr /ipk {activation_key}",shell=True)
+				run("slmgr /skms kms10.msguides.com",shell=True)
+				run("slmgr /ato",shell=True)
+				self.can_exit = True
+				self.root.destroy()
+			Thread(target=execute).start()
 
 	def window(self):
 		self.root = Tk()
 		self.root.config(bg=self.bg)
 		self.root.resizable(0,0)
 		self.root.title("windows activation")
+		self.root.protocol("WM_DELETE_WINDOW", self.exit)
 		self.root.geometry("390x270")
 		self.widgets()
 		self.root.mainloop()
