@@ -14,7 +14,7 @@ class app:
 
 	def activate(self):
 		version = self.selection.get()
-		proceed = messagebox.askyesno("activation",f"are you sure the version of windows you have installed on your system is 'Windows 10 {self.versions[version]}'?")
+		proceed = messagebox.askyesno("activation",f"this is going to activate your system as 'Windows 10 {self.versions[version]}'\n\n do you wish to proceed?")
 		activation_key = self.activation_codes[version]
 		if proceed:
 			system(f"slmgr /ipk {activation_key}")
@@ -33,18 +33,18 @@ class app:
 
 	def widgets(self):
 		self.selection = IntVar()
-		title="select your windows version"
+		title="select the windows version"
 		self.title = Label(self.root,text=title,bg=self.bg,fg=self.fg,font=20)
-		self.radio_home = Radiobutton(self.root,text=self.versions[0],variable=self.selection,value=0,bg=self.bg,fg=self.fg,highlightbackground=self.bg,activebackground=self.bg,activeforeground="#00FF00",selectcolor=self.bg,font=12)
-		self.radio_home_n = Radiobutton(self.root,text=self.versions[1],variable=self.selection,value=1,bg=self.bg,fg=self.fg,highlightbackground=self.bg,activebackground=self.bg,activeforeground="#00FF00",selectcolor=self.bg,font=12)
-		self.radio_pro = Radiobutton(self.root,text=self.versions[2],variable=self.selection,value=2,bg=self.bg,fg=self.fg,highlightbackground=self.bg,activebackground=self.bg,activeforeground="#00FF00",selectcolor=self.bg,font=12)
-		self.radio_pro_n = Radiobutton(self.root,text=self.versions[3],variable=self.selection,value=3,bg=self.bg,fg=self.fg,highlightbackground=self.bg,activebackground=self.bg,activeforeground="#00FF00",selectcolor=self.bg,font=12)
-		self.radio_education = Radiobutton(self.root,text=self.versions[4],variable=self.selection,value=4,bg=self.bg,fg=self.fg,highlightbackground=self.bg,activebackground=self.bg,activeforeground="#00FF00",selectcolor=self.bg,font=12)
-		self.radio_education_n = Radiobutton(self.root,text=self.versions[5],variable=self.selection,value=5,bg=self.bg,fg=self.fg,highlightbackground=self.bg,activebackground=self.bg,activeforeground="#00FF00",selectcolor=self.bg,font=12)
-		self.radio_enterprise = Radiobutton(self.root,text=self.versions[6],variable=self.selection,value=6,bg=self.bg,fg=self.fg,highlightbackground=self.bg,activebackground=self.bg,activeforeground="#00FF00",selectcolor=self.bg,font=12)
-		self.radio_enterprise_n = Radiobutton(self.root,text=self.versions[7],variable=self.selection,value=7,bg=self.bg,fg=self.fg,highlightbackground=self.bg,activebackground=self.bg,activeforeground="#00FF00",selectcolor=self.bg,font=12)
-		self.radio_home_single_language = Radiobutton(self.root,text=self.versions[8],variable=self.selection,value=8,bg=self.bg,fg=self.fg,highlightbackground=self.bg,activebackground=self.bg,activeforeground="#00FF00",selectcolor=self.bg,font=12)
-		self.radio_home_country_specific = Radiobutton(self.root,text=self.versions[9],variable=self.selection,value=9,bg=self.bg,fg=self.fg,highlightbackground=self.bg,activebackground=self.bg,activeforeground="#00FF00",selectcolor=self.bg,font=12)
+		self.radio_home = Radiobutton(self.root,text=self.versions[0],variable=self.selection,value=0,bg=self.bg,fg=self.fg,highlightbackground=self.bg,activebackground=self.bg,activeforeground="#FFFFFF",selectcolor=self.bg,font=12)
+		self.radio_home_n = Radiobutton(self.root,text=self.versions[1],variable=self.selection,value=1,bg=self.bg,fg=self.fg,highlightbackground=self.bg,activebackground=self.bg,activeforeground="#FFFFFF",selectcolor=self.bg,font=12)
+		self.radio_pro = Radiobutton(self.root,text=self.versions[2],variable=self.selection,value=2,bg=self.bg,fg=self.fg,highlightbackground=self.bg,activebackground=self.bg,activeforeground="#FFFFFF",selectcolor=self.bg,font=12)
+		self.radio_pro_n = Radiobutton(self.root,text=self.versions[3],variable=self.selection,value=3,bg=self.bg,fg=self.fg,highlightbackground=self.bg,activebackground=self.bg,activeforeground="#FFFFFF",selectcolor=self.bg,font=12)
+		self.radio_education = Radiobutton(self.root,text=self.versions[4],variable=self.selection,value=4,bg=self.bg,fg=self.fg,highlightbackground=self.bg,activebackground=self.bg,activeforeground="#FFFFFF",selectcolor=self.bg,font=12)
+		self.radio_education_n = Radiobutton(self.root,text=self.versions[5],variable=self.selection,value=5,bg=self.bg,fg=self.fg,highlightbackground=self.bg,activebackground=self.bg,activeforeground="#FFFFFF",selectcolor=self.bg,font=12)
+		self.radio_enterprise = Radiobutton(self.root,text=self.versions[6],variable=self.selection,value=6,bg=self.bg,fg=self.fg,highlightbackground=self.bg,activebackground=self.bg,activeforeground="#FFFFFF",selectcolor=self.bg,font=12)
+		self.radio_enterprise_n = Radiobutton(self.root,text=self.versions[7],variable=self.selection,value=7,bg=self.bg,fg=self.fg,highlightbackground=self.bg,activebackground=self.bg,activeforeground="#FFFFFF",selectcolor=self.bg,font=12)
+		self.radio_home_single_language = Radiobutton(self.root,text=self.versions[8],variable=self.selection,value=8,bg=self.bg,fg=self.fg,highlightbackground=self.bg,activebackground=self.bg,activeforeground="#FFFFFF",selectcolor=self.bg,font=12)
+		self.radio_home_country_specific = Radiobutton(self.root,text=self.versions[9],variable=self.selection,value=9,bg=self.bg,fg=self.fg,highlightbackground=self.bg,activebackground=self.bg,activeforeground="#FFFFFF",selectcolor=self.bg,font=12)
 
 		self.activate_button = Button(self.root,text="Activate",bg=self.bg,fg=self.fg,font=14,command=self.activate)
 
