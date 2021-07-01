@@ -25,6 +25,7 @@ class app:
 	def window(self):
 		self.root = Tk()
 		self.root.config(bg=self.bg)
+		self.root.resizable(0,0)
 		self.root.title("windows activation")
 		self.root.geometry("390x270")
 		self.widgets()
